@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>X-Camp TA Onboarding SOP</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#F8F9FA;color:#1B2B4B;min-height:100vh;padding:24px 16px}
+.wrap{max-width:720px;margin:0 auto}
+h1{font-size:22px;font-weight:500;margin-bottom:4px}
+.sub{font-size:13px;color:#5F5E5A;margin-bottom:20px}
+.label{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#5F5E5A;margin-bottom:4px}
+
+/* Progress */
+.prog-row{display:flex;justify-content:space-between;font-size:11px;color:#5F5E5A;margin-bottom:6px}
+.prog-track{height:6px;background:#F1EFE8;border-radius:4px;overflow:hidden;margin-bottom:16px}
+.prog-fill{height:100%;background:#1D9E75;border-radius:4px;transition:width .3s}
+
+/* Pills */
+.pills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:20px}
+.pill{display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:400;cursor:pointer;border:.5px solid #e0dfd8;background:#fff;color:#5F5E5A;transition:all .15s}
+.pill.active{font-weight:500}
+
+/* Card */
+.card{background:#fff;border:.5px solid rgba(0,0,0,.08);border-radius:14px;overflow:hidden;margin-bottom:16px}
+.card-head{padding:20px 24px}
+.owner-badge{display:inline-block;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;padding:2px 10px;border-radius:20px;background:rgba(255,255,255,.5);margin-bottom:8px}
+.timing{font-size:11px;opacity:.7;float:right;margin-top:2px}
+.step-icon{font-size:26px;margin-bottom:6px}
+.card-title{font-size:18px;font-weight:500;margin-bottom:4px}
+.card-sub{font-size:13px;opacity:.8}
+.card-body{padding:24px}
+
+/* Section */
+.section{margin-bottom:20px}
+.sec-head{font-size:14px;font-weight:500;color:#1B2B4B;margin-bottom:8px}
+.body-text{font-size:13px;color:#5F5E5A;line-height:1.7;margin-bottom:8px}
+
+/* Arrow list */
+.arr-list{margin:4px 0}
+.arr-item{display:flex;gap:8px;padding:5px 0;border-bottom:.5px solid rgba(0,0,0,.06);font-size:13px;color:#5F5E5A;line-height:1.5}
+.arr-item:last-child{border-bottom:none}
+.arr{color:#1D9E75;flex-shrink:0;margin-top:1px}
+
+/* Checklist */
+.check-item{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:.5px solid rgba(0,0,0,.06);cursor:pointer;user-select:none}
+.check-item:last-child{border-bottom:none}
+.check-box{width:16px;height:16px;border-radius:4px;border:1.5px solid rgba(0,0,0,.15);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.check-box.done{background:#1D9E75;border-color:#1D9E75}
+.check-tick{color:#fff;font-size:10px;display:none}
+.check-box.done .check-tick{display:block}
+.check-label{font-size:13px;color:#1B2B4B;line-height:1.5;transition:all .15s}
+.check-label.done{color:#5F5E5A;text-decoration:line-through}
+
+/* Highlight */
+.highlight{border-radius:8px;padding:12px 14px;margin:12px 0;font-size:13px;line-height:1.6}
+
+/* Template */
+.template{background:#F8F9FA;border:.5px solid rgba(0,0,0,.08);border-radius:8px;padding:12px 14px;margin:12px 0}
+.template-to{font-size:11px;color:#5F5E5A;margin-bottom:6px}
+.template-body{font-size:13px;color:#1B2B4B;line-height:1.8;font-style:italic;white-space:pre-line}
+
+/* Table */
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin:12px 0}
+.tbl th{text-align:left;padding:8px 10px;background:#F1EFE8;color:#5F5E5A;font-weight:500;border-bottom:1px solid rgba(0,0,0,.08)}
+.tbl td{padding:8px 10px;color:#1B2B4B;border-bottom:.5px solid rgba(0,0,0,.06);vertical-align:top;line-height:1.5}
+.tbl tr:nth-child(even) td{background:#F8F9FA}
+
+/* Nav */
+.nav{display:flex;justify-content:space-between;align-items:center}
+.nav-btn{padding:8px 18px;border-radius:8px;font-size:13px;cursor:pointer;border:.5px solid rgba(0,0,0,.08);background:#F8F9FA;color:#1B2B4B;transition:all .15s}
+.nav-btn:disabled{opacity:.4;cursor:not-allowed}
+.nav-btn.primary{background:#1B2B4B;color:#fff;border-color:#1B2B4B}
+.dots{display:flex;gap:4px}
+.dot{height:7px;border-radius:4px;border:none;cursor:pointer;background:rgba(0,0,0,.15);transition:all .2s;padding:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="label">X-Camp · Standard Operating Process</div>
+  <h1>New TA Onboarding Workflow</h1>
+  <p class="sub">End-to-end process from finance request to first student booking.</p>
+
+  <div class="prog-row">
+    <span id="prog-label">Step 1 of 8</span>
+    <span id="prog-pct">0% complete</span>
+  </div>
+  <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+
+  <div class="pills" id="pills"></div>
+  <div class="card" id="step-card"></div>
+
+  <div class="nav">
+    <button class="nav-btn" id="btn-prev" onclick="go(-1)">← Prev</button>
+    <div class="dots" id="dots"></div>
+    <button class="nav-btn primary" id="btn-next" onclick="go(1)">Next →</button>
+  </div>
+</div>
+
+<script>
+const C = {
+  navy:"#1B2B4B", navyBg:"#EEF2FF", navyBorder:"#C7D2FE",
+  teal:"#0F6E56", tealLight:"#1D9E75", tealBg:"#E1F5EE", tealBorder:"#9FE1CB",
+  amber:"#854F0B", amberLight:"#BA7517", amberBg:"#FAEEDA", amberBorder:"#FAC775",
+  blue:"#2563EB", blueBg:"#EFF6FF", blueBorder:"#93C5FD",
+  purple:"#3C3489", purpleBg:"#EEEDFE", purpleBorder:"#CECBF6",
+  gray:"#5F5E5A",
+};
+
+const steps = [
+  {
+    id:"finance", icon:"💳", label:"Purchase Zoom account",
+    owner:"Program Manager", timing:"Week before TA starts",
+    oc:C.navy, obg:C.navyBg, ob:C.navyBorder,
+    items:[
+      { h:"What to request",
+        body:"Submit a request to finance to purchase one Zoom Business+ seat ($18.99/month) for the new TA. This is a per-seat addition to the existing X-Camp Zoom organization.",
+        list:["Zoom Business+ — 1 seat, added to X-Camp organization","Cost: $18.99/month x 3 months = $56.97 per quarter","The TA does NOT need a Google organization account — Zoom Business+ is sufficient","The TA signs in with their personal Google email as their Zoom login"] },
+      { h:"Why Zoom Business+ specifically",
+        body:"Zoom Business+ is the minimum tier that includes Zoom Scheduler, Zoom AI Companion (session summaries), and cloud recording with COPPA-compliant storage. Lower tiers do not include Scheduler or AI Companion. The TA connects their personal Google Calendar to Zoom for two-way sync — their personal schedule automatically blocks availability, preventing double bookings with no extra setup." },
+      { h:"What to send finance",
+        tpl:{ to:"Finance team", body:"Hi, please purchase 1 Zoom Business+ seat for our new TA [Name] to be added to the X-Camp Zoom organization. Their login email will be [TA personal Google email]. This is for the Spring 2026 quarter. Cost is $18.99/month x 3 months = $56.97. Please send the org invite to their email once purchased. Thank you." } },
+      { h:"Your checklist",
+        checks:["Finance request submitted with TA name and personal Google email","Zoom org invite sent to TA email — confirm TA has received it","TA added to X-Camp Zoom organization — confirm in Zoom Admin portal"] }
+    ]
+  },
+  {
+    id:"ai", icon:"⚙️", label:"Enable AI settings",
+    owner:"Program Manager", timing:"Once, before first TA goes live",
+    oc:C.navy, obg:C.navyBg, ob:C.navyBorder,
+    items:[
+      { h:"What to enable in Zoom Admin Portal",
+        body:"Go to Zoom Admin Portal then Account Management then Account Settings then AI Companion. These settings apply to all TAs in the organization once enabled.",
+        list:["Meeting Summary with AI Companion — ON","Auto-start summary for all meetings — ON","Share summary with meeting participants — ON","Cloud Recording — ON (required for AI summary to work)","COPPA-compliant storage settings — confirm enabled for under-13 compliance"] },
+      { h:"Why this is a PM task not a TA task",
+        body:"AI Companion settings are configured at the organization account level, not per user. Only the Zoom org admin can enable these. Once set, every TA in the organization automatically has AI summaries active on all sessions — no per-TA configuration needed." },
+      { h:"Your checklist",
+        checks:["Zoom AI Companion enabled at org level","Cloud recording enabled at org level","Share summary with participants toggled on","Verified by running a test meeting and checking that summary generates"] }
+    ]
+  },
+  {
+    id:"accept", icon:"🔐", label:"Accept & connect",
+    owner:"TA", timing:"Day 1",
+    oc:C.tealLight, obg:C.tealBg, ob:C.tealBorder,
+    items:[
+      { h:"Step by step",
+        list:["Check personal Google email inbox for the Zoom organization invite from X-Camp","Click Accept Invite — this links the personal Google account to X-Camp Zoom org","Sign into zoom.us using the personal Google email","Go to Zoom Settings then Calendar then Connect Calendar","Select Google Calendar and choose Two-Way Sync","Confirm the sync is active — personal calendar events should now appear as blocked time in Zoom Scheduler"] },
+      { h:"Why two-way Google Calendar sync matters",
+        body:"With two-way sync, any personal commitment the TA adds to Google Calendar — classes, part-time work, appointments — automatically blocks that slot across all four Zoom Scheduler booking pages. Students cannot book a slot the TA is unavailable for, without the TA needing to manage two calendars.",
+        hl:{ text:"This is the key reason TAs only need a Zoom Business+ account and not a Google organization account. Their personal Google Calendar does the availability management automatically.", c:C.tealLight, bg:C.tealBg, border:C.tealBorder } },
+      { h:"Your checklist",
+        checks:["Zoom org invite accepted","Signed into Zoom with personal Google email","Google Calendar connected with two-way sync","Confirmed: a personal calendar event blocks the slot in Zoom Scheduler"] }
+    ]
+  },
+  {
+    id:"pages", icon:"📅", label:"Create booking pages",
+    owner:"TA", timing:"Day 1–2",
+    oc:C.tealLight, obg:C.tealBg, ob:C.tealBorder,
+    items:[
+      { h:"Where to go",
+        body:"Go to scheduler.zoom.us and sign in. Click Create then Booking Page. Repeat four times — one per session type." },
+      { h:"Create these four pages",
+        table:{ heads:["Page name","Duration","Key gate"], rows:[
+          ["Conceptual Session — X-Camp OH","25 min","Hint video Y/N · Pseudocode paste required"],
+          ["Debugging Session — X-Camp OH","15 min","Code paste required to confirm booking"],
+          ["Code Review — X-Camp OH","20 min","Accepted code paste required"],
+          ["Catch-up Session — X-Camp OH","30 min","Weeks behind + reason required"],
+        ]} },
+      { h:"Settings to apply to every page",
+        list:["Buffer time: 5 minutes after every session","Max advance booking: 5 days","Cancellation policy: 24 hours before session","Max bookings per day: 3","Reminders: 24h email + SMS, 1h email + SMS"] },
+      { h:"Cross-page conflict detection",
+        body:"All four pages draw from the same underlying TA calendar. A booking on any page blocks the same slot on all other three pages automatically — native Zoom behavior when all pages are under the same account.",
+        hl:{ text:"All four pages must be created under the same Zoom login for conflict detection to work. Never create pages across two different accounts.", c:C.amber, bg:C.amberBg, border:C.amberBorder } },
+      { h:"Your checklist",
+        checks:["Conceptual Session booking page created (25 min, questionnaire complete)","Debugging Session booking page created (15 min, code paste required)","Code Review booking page created (20 min, accepted code required)","Catch-up Session booking page created (30 min, weeks behind required)","Buffer, cancellation, advance booking, and reminder settings applied to all 4 pages","Availability hours set to reflect actual available time blocks"] }
+    ]
+  },
+  {
+    id:"test", icon:"🧪", label:"Test booking",
+    owner:"Program Manager + TA", timing:"Day 2–3",
+    oc:C.purple, obg:C.purpleBg, ob:C.purpleBorder,
+    items:[
+      { h:"What to test",
+        list:["PM opens each of the 4 booking URLs and books a test session","Confirm: questionnaire fields are all present and marked Required","Confirm: duration is correct per page (25 / 15 / 20 / 30 min)","Confirm: 5-minute buffer appears after the booked slot","Confirm: cancellation policy shows 24 hours","Confirm: reminder confirmation email arrives in PM inbox after booking","Confirm: booking on one page blocks the same slot on all other three pages","TA cancels all test bookings after verification"] },
+      { h:"Test the AI summary",
+        list:["PM and TA run a 2-minute test Zoom meeting via one of the booking links","End the meeting and wait 5 minutes","Confirm: AI summary appears in TA Zoom account under Meetings then Previous","Confirm: summary email sent to meeting participant (PM) automatically","If summary does not generate: check Zoom Admin Portal AI Companion settings"] },
+      { h:"Your checklist",
+        checks:["All 4 booking pages tested — questionnaires, durations, and buffers verified","Cross-page conflict detection verified","Reminder email received after test booking","AI summary generated and emailed after test meeting","All test bookings cancelled after verification"] }
+    ]
+  },
+  {
+    id:"submit", icon:"🔗", label:"Submit URLs",
+    owner:"TA → Program Manager", timing:"Day 3",
+    oc:C.amber, obg:C.amberBg, ob:C.amberBorder,
+    items:[
+      { h:"How to get the URLs",
+        list:["Go to scheduler.zoom.us and open your booking pages list","Click on each page and copy the booking URL from the top of the page","URL format: scheduler.zoom.us/[your-name]/[page-name]","Copy all 4 URLs — one per session type"] },
+      { h:"How to submit",
+        tpl:{ to:"Program Manager via Lark DM", body:"Hi [PM Name], here are my 4 booking URLs for this quarter:\n\nConceptual (25 min): [URL]\nDebugging (15 min): [URL]\nCode Review (20 min): [URL]\nCatch-up (30 min): [URL]\n\nAll pages are set up and tested. Ready to go live." } },
+      { h:"What happens after you submit",
+        body:"Once you send the URLs, your setup is complete. The program manager records them centrally and distributes to Teaching Management and Class Coordinators. They handle all student-facing announcements, Lark class tabs, and parent broadcasts.",
+        hl:{ text:"Your job ends here. You will be notified when students can start booking.", c:C.tealLight, bg:C.tealBg, border:C.tealBorder } }
+    ]
+  },
+  {
+    id:"distribute", icon:"📢", label:"Distribute",
+    owner:"Program Manager + CC", timing:"Day 3–5",
+    oc:C.blue, obg:C.blueBg, ob:C.blueBorder,
+    items:[
+      { h:"PM — record in central Lark document",
+        list:["Add the new TA's 4 URLs to the central OH URL record in Lark Wiki","Format: TA name · Level · Conceptual URL · Debugging URL · Code Review URL · Catch-up URL","Test each URL one more time to confirm they load correctly"] },
+      { h:"PM — distribute to Teaching Management",
+        list:["Send the TA's 4 URLs to Teaching Management via Lark","Teaching Management prepares teacher announcement slides with level-specific URLs","Teaching Management confirms teachers have announced OH in class"] },
+      { h:"CC — update Class Information tab in Lark",
+        list:["Receive 4 URLs for assigned level from PM","Add all 4 URLs to the Class Information tab, labelled by session type","Add the student guide shareable link below the URLs","Pin the section so students can always find it"] },
+      { h:"CC — broadcast to parent WeChat group",
+        list:["Send bilingual broadcast message to parent WeChat group with all 4 booking links","Include student guide link in the message","Pin the message in the WeChat group","Import parent contact CSV into Zoom contacts for automated reminder delivery"] },
+      { h:"Your checklist",
+        checks:["Central Lark URL record updated with new TA URLs","URLs sent to Teaching Management — teacher announcement confirmed","CC has updated Class Information tab in Lark","CC has sent parent broadcast in WeChat group","Parent contact CSV imported into Zoom contacts","TA notified: students can now book sessions"] }
+    ]
+  },
+  {
+    id:"golive", icon:"🚀", label:"Go live",
+    owner:"Program Manager", timing:"Day 5",
+    oc:C.tealLight, obg:C.tealBg, ob:C.tealBorder,
+    items:[
+      { h:"Final verification before notifying TA",
+        list:["All 4 booking pages are live and accessible to students","Class Information tab in Lark shows the correct URLs","Parent WeChat broadcast has been sent and pinned","Teacher announcement has been made in class","Zoom AI Companion is active — summaries will generate automatically","Parent contact data is in Zoom for reminder delivery"] },
+      { h:"Notify the TA",
+        tpl:{ to:"TA via Lark DM", body:"Hi [TA Name], everything is set up and students can now book sessions. Your sessions will be recorded automatically and AI summaries sent to students after each session. Check your Zoom dashboard regularly for bookings. Your first quarterly review will be at end of quarter. Good luck!" } },
+      { h:"Ongoing after go-live",
+        list:["TA runs sessions independently — no further PM action needed for routine sessions","PM reviews Zoom dashboard weekly (10 min) for no-show flags and escalation alerts","Quarterly TA review at end of quarter based on ratings, hours, and session tags","URL record updated if any TA changes a booking page URL mid-quarter"] }
+    ]
+  },
+];
+
+let cur = 0;
+const checkState = {};
+
+function renderSection(item, sid) {
+  let html = `<div class="section"><div class="sec-head">${item.h}</div>`;
+  if(item.body) html += `<div class="body-text">${item.body}</div>`;
+  if(item.hl) html += `<div class="highlight" style="background:${item.hl.bg};border:1px solid ${item.hl.border};color:${item.hl.c}">${item.hl.text}</div>`;
+  if(item.tpl) html += `<div class="template"><div class="template-to">To: ${item.tpl.to}</div><div class="template-body">${item.tpl.body}</div></div>`;
+  if(item.list) {
+    html += `<div class="arr-list">`;
+    item.list.forEach(t => { html += `<div class="arr-item"><span class="arr">→</span><span>${t}</span></div>`; });
+    html += `</div>`;
+  }
+  if(item.table) {
+    html += `<table class="tbl"><thead><tr>`;
+    item.table.heads.forEach(h => { html += `<th>${h}</th>`; });
+    html += `</tr></thead><tbody>`;
+    item.table.rows.forEach(row => {
+      html += `<tr>`;
+      row.forEach(cell => { html += `<td>${cell}</td>`; });
+      html += `</tr>`;
+    });
+    html += `</tbody></table>`;
+  }
+  if(item.checks) {
+    if(!checkState[sid]) checkState[sid] = {};
+    item.checks.forEach((t, i) => {
+      const key = sid + '_' + i;
+      if(checkState[sid][i] === undefined) checkState[sid][i] = false;
+      const done = checkState[sid][i];
+      html += `<div class="check-item" onclick="toggleCheck('${sid}',${i})">
+        <div class="check-box${done?' done':''}"><span class="check-tick">✓</span></div>
+        <span class="check-label${done?' done':''}">${t}</span>
+      </div>`;
+    });
+  }
+  html += `</div>`;
+  return html;
+}
+
+function toggleCheck(sid, idx) {
+  if(!checkState[sid]) checkState[sid] = {};
+  checkState[sid][idx] = !checkState[sid][idx];
+  render();
+}
+
+function render() {
+  const s = steps[cur];
+  const pct = Math.round((cur / (steps.length - 1)) * 100);
+
+  document.getElementById('prog-label').textContent = `Step ${cur+1} of ${steps.length}`;
+  document.getElementById('prog-pct').textContent = `${pct}% complete`;
+  document.getElementById('prog-fill').style.width = pct + '%';
+
+  // Pills
+  let pills = '';
+  steps.forEach((st, i) => {
+    const active = i === cur;
+    pills += `<button class="pill${active?' active':''}" onclick="jump(${i})"
+      style="${active ? `border-color:${st.oc};background:${st.obg};color:${st.oc}` : ''}">
+      <span>${st.icon}</span>${st.label}</button>`;
+  });
+  document.getElementById('pills').innerHTML = pills;
+
+  // Card
+  let body = '';
+  s.items.forEach(item => { body += renderSection(item, s.id); });
+
+  document.getElementById('step-card').innerHTML = `
+    <div class="card-head" style="background:${s.obg};border-bottom:1px solid ${s.ob}">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+        <span class="owner-badge" style="color:${s.oc}">Owner: ${s.owner}</span>
+        <span class="timing" style="color:${s.oc}">${s.timing}</span>
+      </div>
+      <div class="step-icon">${s.icon}</div>
+      <div class="card-title" style="color:${s.oc}">${steps[cur].label}</div>
+    </div>
+    <div class="card-body">${body}</div>`;
+
+  // Dots
+  let dots = '';
+  steps.forEach((_, i) => {
+    dots += `<button class="dot" onclick="jump(${i})"
+      style="width:${i===cur?20:7}px;opacity:${i===cur?1:.4};background:${i===cur?'#1B2B4B':'rgba(0,0,0,.15)'}"></button>`;
+  });
+  document.getElementById('dots').innerHTML = dots;
+
+  // Buttons
+  const prev = document.getElementById('btn-prev');
+  const next = document.getElementById('btn-next');
+  prev.disabled = cur === 0;
+  next.textContent = cur === steps.length - 1 ? 'Done ✓' : 'Next →';
+  next.disabled = cur === steps.length - 1;
+}
+
+function go(dir) { jump(cur + dir); }
+function jump(i) {
+  if(i < 0 || i >= steps.length) return;
+  cur = i;
+  render();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+render();
+</script>
+</body>
+</html>
