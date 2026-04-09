@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>X-Camp TA Setup Guide</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#F8F9FA;color:#1B2B4B;min-height:100vh;padding:24px 16px}
+.wrap{max-width:720px;margin:0 auto}
+h1{font-size:22px;font-weight:500;margin-bottom:4px}
+.sub{font-size:13px;color:#5F5E5A;margin-bottom:20px}
+.label{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#5F5E5A;margin-bottom:4px}
+.prog-row{display:flex;justify-content:space-between;font-size:11px;color:#5F5E5A;margin-bottom:6px}
+.prog-track{height:6px;background:#F1EFE8;border-radius:4px;overflow:hidden;margin-bottom:16px}
+.prog-fill{height:100%;background:#1D9E75;border-radius:4px;transition:width .3s}
+.pills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:20px}
+.pill{display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:400;cursor:pointer;border:.5px solid #e0dfd8;background:#fff;color:#5F5E5A;transition:all .15s}
+.pill.active{font-weight:500}
+.card{background:#fff;border:.5px solid rgba(0,0,0,.08);border-radius:14px;overflow:hidden;margin-bottom:16px}
+.card-head{padding:20px 24px}
+.owner-badge{display:inline-block;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;padding:2px 10px;border-radius:20px;background:rgba(255,255,255,.5);margin-bottom:8px}
+.timing{font-size:11px;opacity:.7;float:right;margin-top:2px}
+.step-icon{font-size:26px;margin-bottom:6px}
+.card-title{font-size:18px;font-weight:500;margin-bottom:4px}
+.card-body{padding:24px}
+.section{margin-bottom:20px}
+.sec-head{font-size:14px;font-weight:500;color:#1B2B4B;margin-bottom:8px}
+.body-text{font-size:13px;color:#5F5E5A;line-height:1.7;margin-bottom:8px}
+.arr-list{margin:4px 0}
+.arr-item{display:flex;gap:8px;padding:5px 0;border-bottom:.5px solid rgba(0,0,0,.06);font-size:13px;color:#5F5E5A;line-height:1.5}
+.arr-item:last-child{border-bottom:none}
+.arr{color:#1D9E75;flex-shrink:0;margin-top:1px}
+.check-item{display:flex;align-items:flex-start;gap:10px;padding:7px 0;border-bottom:.5px solid rgba(0,0,0,.06);cursor:pointer;user-select:none}
+.check-item:last-child{border-bottom:none}
+.check-box{width:16px;height:16px;border-radius:4px;border:1.5px solid rgba(0,0,0,.15);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.check-box.done{background:#1D9E75;border-color:#1D9E75}
+.check-tick{color:#fff;font-size:10px;display:none}
+.check-box.done .check-tick{display:block}
+.check-label{font-size:13px;color:#1B2B4B;line-height:1.5;transition:all .15s}
+.check-label.done{color:#5F5E5A;text-decoration:line-through}
+.highlight{border-radius:8px;padding:12px 14px;margin:12px 0;font-size:13px;line-height:1.6}
+.template{background:#F8F9FA;border:.5px solid rgba(0,0,0,.08);border-radius:8px;padding:12px 14px;margin:12px 0}
+.template-to{font-size:11px;color:#5F5E5A;margin-bottom:6px}
+.template-body{font-size:13px;color:#1B2B4B;line-height:1.8;font-style:italic;white-space:pre-line}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin:12px 0}
+.tbl th{text-align:left;padding:8px 10px;background:#F1EFE8;color:#5F5E5A;font-weight:500;border-bottom:1px solid rgba(0,0,0,.08)}
+.tbl td{padding:8px 10px;color:#1B2B4B;border-bottom:.5px solid rgba(0,0,0,.06);vertical-align:top;line-height:1.5}
+.tbl tr:nth-child(even) td{background:#F8F9FA}
+.nav{display:flex;justify-content:space-between;align-items:center}
+.nav-btn{padding:8px 18px;border-radius:8px;font-size:13px;cursor:pointer;border:.5px solid rgba(0,0,0,.08);background:#F8F9FA;color:#1B2B4B;transition:all .15s}
+.nav-btn:disabled{opacity:.4;cursor:not-allowed}
+.nav-btn.primary{background:#1B2B4B;color:#fff;border-color:#1B2B4B}
+.dots{display:flex;gap:4px}
+.dot{height:7px;border-radius:4px;border:none;cursor:pointer;background:rgba(0,0,0,.15);transition:all .2s;padding:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="label">X-Camp Academy · TA Setup</div>
+  <h1>TA Setup Guide</h1>
+  <p class="sub">Everything you need to complete before your first student session.</p>
+
+  <div class="prog-row">
+    <span id="prog-label">Step 1 of 4</span>
+    <span id="prog-pct">0% complete</span>
+  </div>
+  <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+
+  <div class="pills" id="pills"></div>
+  <div class="card" id="step-card"></div>
+
+  <div class="nav">
+    <button class="nav-btn" id="btn-prev" onclick="go(-1)">← Prev</button>
+    <div class="dots" id="dots"></div>
+    <button class="nav-btn primary" id="btn-next" onclick="go(1)">Next →</button>
+  </div>
+</div>
+
+<script>
+const C = {
+  teal:"#0F6E56", tealLight:"#1D9E75", tealBg:"#E1F5EE", tealBorder:"#9FE1CB",
+  amber:"#854F0B", amberBg:"#FAEEDA", amberBorder:"#FAC775",
+  purple:"#3C3489", purpleBg:"#EEEDFE", purpleBorder:"#CECBF6",
+};
+
+const steps = [
+  {
+    id:"accept", icon:"🔐", label:"Accept & connect",
+    owner:"TA", timing:"Day 1",
+    oc:C.tealLight, obg:C.tealBg, ob:C.tealBorder,
+    items:[
+      { h:"Before you start",
+        body:"Your program manager has already purchased a Zoom Business+ seat for you and sent an invite to your personal Google email. Check your inbox before continuing." },
+      { h:"Step by step",
+        list:[
+          "Check your personal Google email inbox for the Zoom organization invite from X-Camp",
+          "Click Accept Invite — this links your personal Google account to the X-Camp Zoom organization",
+          "Sign into zoom.us using your personal Google email (not a separate Zoom password)",
+          "Go to Zoom Settings then Calendar then Connect Calendar",
+          "Select Google Calendar and choose Two-Way Sync",
+          "Confirm the sync is active — your personal calendar events should now appear as blocked time in Zoom Scheduler",
+        ] },
+      { h:"Why two-way Google Calendar sync matters",
+        body:"With two-way sync, any personal commitment you add to Google Calendar — classes, part-time work, appointments — automatically blocks that slot across all four of your Zoom Scheduler booking pages. Students cannot book a slot you are unavailable for, without you needing to manage two calendars separately.",
+        hl:{ text:"You only need your Zoom Business+ account — no separate Google organization account is required. Your personal Google Calendar handles availability management automatically.", c:C.tealLight, bg:C.tealBg, border:C.tealBorder } },
+      { h:"Your checklist",
+        checks:[
+          "Zoom org invite accepted from X-Camp",
+          "Signed into zoom.us with personal Google email",
+          "Google Calendar connected with two-way sync enabled",
+          "Verified: a personal calendar event blocks the slot in Zoom Scheduler",
+        ] }
+    ]
+  },
+  {
+    id:"pages", icon:"📅", label:"Create booking pages",
+    owner:"TA", timing:"Day 1–2",
+    oc:C.tealLight, obg:C.tealBg, ob:C.tealBorder,
+    items:[
+      { h:"Where to go",
+        body:"Go to scheduler.zoom.us and sign in with your Zoom account. Click Create then Booking Page. You will repeat this four times — one per session type." },
+      { h:"Create these four pages in this order",
+        table:{ heads:["Page name","Duration","Key questionnaire gate"], rows:[
+          ["Conceptual Session — X-Camp OH","25 min","Hint video Y/N · Pseudocode paste required"],
+          ["Debugging Session — X-Camp OH","15 min","Code paste required to confirm booking"],
+          ["Code Review — X-Camp OH","20 min","Accepted code paste required"],
+          ["Catch-up Session — X-Camp OH","30 min","Weeks behind + reason required"],
+        ]} },
+      { h:"Settings to apply to every page",
+        list:[
+          "Buffer time: 5 minutes after every session",
+          "Max advance booking: 5 days",
+          "Cancellation policy: 24 hours before session",
+          "Max bookings per day: 3 (prevents back-to-back burnout)",
+          "Reminders: 24h email + SMS, 1h email + SMS",
+        ] },
+      { h:"How conflict detection works across pages",
+        body:"All four pages draw from the same underlying calendar — your Zoom account. A booking on any one page automatically blocks that same time slot on all other three pages. No extra configuration needed.",
+        hl:{ text:"All four pages must be created under the same Zoom login. If pages are split across two accounts, cross-page conflict detection will not work.", c:C.amber, bg:C.amberBg, border:C.amberBorder } },
+      { h:"Your checklist",
+        checks:[
+          "Conceptual Session booking page created (25 min, questionnaire complete)",
+          "Debugging Session booking page created (15 min, code paste required)",
+          "Code Review booking page created (20 min, accepted code required)",
+          "Catch-up Session booking page created (30 min, weeks behind required)",
+          "Buffer time (5 min), cancellation policy (24h), and reminders set on all 4 pages",
+          "Availability hours configured to reflect your actual available time blocks",
+        ] }
+    ]
+  },
+  {
+    id:"test", icon:"🧪", label:"Test with PM",
+    owner:"TA + Program Manager", timing:"Day 2–3",
+    oc:C.purple, obg:C.purpleBg, ob:C.purpleBorder,
+    items:[
+      { h:"What gets tested",
+        body:"Your program manager will open each of your 4 booking URLs and run a test booking. You will also run a short test Zoom meeting together to confirm AI summaries are working. Do not share your URLs with students until the PM has confirmed everything passes." },
+      { h:"What the PM checks",
+        list:[
+          "All 4 booking pages load correctly with the right questionnaire fields",
+          "Duration is correct per page (25 / 15 / 20 / 30 min)",
+          "5-minute buffer appears after each booked slot",
+          "Cancellation policy shows 24 hours",
+          "Booking on one page blocks the same slot on all other three pages",
+          "Reminder confirmation email arrives after booking",
+          "AI summary generates and is emailed after a test Zoom meeting",
+        ] },
+      { h:"Your role in the test",
+        list:[
+          "Be available for a short 2-minute test Zoom call with the PM",
+          "Cancel all test bookings after the PM confirms everything passes",
+          "Flag any issues immediately — e.g. wrong duration, missing questionnaire field",
+        ] },
+      { h:"Your checklist",
+        checks:[
+          "Available for test call with program manager",
+          "Confirmed all 4 pages pass PM verification",
+          "All test bookings cancelled after verification",
+          "AI summary confirmed working after test meeting",
+        ] }
+    ]
+  },
+  {
+    id:"submit", icon:"🔗", label:"Submit URLs",
+    owner:"TA", timing:"Day 3",
+    oc:C.tealLight, obg:C.tealBg, ob:C.tealBorder,
+    items:[
+      { h:"How to get your 4 booking URLs",
+        list:[
+          "Go to scheduler.zoom.us and open your booking pages list",
+          "Click on each page and copy the booking URL from the top of the page",
+          "URL format will look like: scheduler.zoom.us/your-name/page-name",
+          "Copy all 4 URLs — one per session type",
+        ] },
+      { h:"How to submit",
+        tpl:{ to:"Program Manager via Lark DM", body:"Hi [PM Name], here are my 4 booking URLs for this quarter:\n\nConceptual (25 min): [URL]\nDebugging (15 min): [URL]\nCode Review (20 min): [URL]\nCatch-up (30 min): [URL]\n\nAll pages are set up and tested. Ready to go live." } },
+      { h:"What happens after you submit",
+        body:"Once you send the URLs, your setup is complete. The program manager records them centrally and passes them to the teaching management team and class coordinators. They handle all teacher announcements, class channel posts, and parent broadcasts. You do not need to share your URLs with anyone else.",
+        hl:{ text:"Your job ends here. You will receive a message from the program manager when students can start booking. From that point, just check your Zoom Scheduler regularly for new bookings.", c:C.tealLight, bg:C.tealBg, border:C.tealBorder } },
+      { h:"Your checklist",
+        checks:[
+          "All 4 URLs copied from Zoom Scheduler",
+          "URLs sent to program manager via Lark DM with correct labels",
+          "Received go-live confirmation from program manager",
+          "Zoom Scheduler checked — ready to receive student bookings",
+        ] }
+    ]
+  },
+];
+
+let cur = 0;
+const checkState = {};
+
+function renderSection(item, sid) {
+  let html = `<div class="section"><div class="sec-head">${item.h}</div>`;
+  if(item.body) html += `<div class="body-text">${item.body}</div>`;
+  if(item.hl) html += `<div class="highlight" style="background:${item.hl.bg};border:1px solid ${item.hl.border};color:${item.hl.c}">${item.hl.text}</div>`;
+  if(item.tpl) html += `<div class="template"><div class="template-to">To: ${item.tpl.to}</div><div class="template-body">${item.tpl.body}</div></div>`;
+  if(item.list) {
+    html += `<div class="arr-list">`;
+    item.list.forEach(t => { html += `<div class="arr-item"><span class="arr">→</span><span>${t}</span></div>`; });
+    html += `</div>`;
+  }
+  if(item.table) {
+    html += `<table class="tbl"><thead><tr>`;
+    item.table.heads.forEach(h => { html += `<th>${h}</th>`; });
+    html += `</tr></thead><tbody>`;
+    item.table.rows.forEach(row => {
+      html += `<tr>`;
+      row.forEach(cell => { html += `<td>${cell}</td>`; });
+      html += `</tr>`;
+    });
+    html += `</tbody></table>`;
+  }
+  if(item.checks) {
+    if(!checkState[sid]) checkState[sid] = {};
+    item.checks.forEach((t, i) => {
+      if(checkState[sid][i] === undefined) checkState[sid][i] = false;
+      const done = checkState[sid][i];
+      html += `<div class="check-item" onclick="toggleCheck('${sid}',${i})">
+        <div class="check-box${done?' done':''}"><span class="check-tick">✓</span></div>
+        <span class="check-label${done?' done':''}">${t}</span>
+      </div>`;
+    });
+  }
+  html += `</div>`;
+  return html;
+}
+
+function toggleCheck(sid, idx) {
+  if(!checkState[sid]) checkState[sid] = {};
+  checkState[sid][idx] = !checkState[sid][idx];
+  render();
+}
+
+function render() {
+  const s = steps[cur];
+  const pct = Math.round((cur / (steps.length - 1)) * 100);
+
+  document.getElementById('prog-label').textContent = `Step ${cur+1} of ${steps.length}`;
+  document.getElementById('prog-pct').textContent = `${pct}% complete`;
+  document.getElementById('prog-fill').style.width = pct + '%';
+
+  let pills = '';
+  steps.forEach((st, i) => {
+    const active = i === cur;
+    pills += `<button class="pill${active?' active':''}" onclick="jump(${i})"
+      style="${active?`border-color:${st.oc};background:${st.obg};color:${st.oc}`:''}">
+      <span>${st.icon}</span>${st.label}</button>`;
+  });
+  document.getElementById('pills').innerHTML = pills;
+
+  let body = '';
+  s.items.forEach(item => { body += renderSection(item, s.id); });
+
+  document.getElementById('step-card').innerHTML = `
+    <div class="card-head" style="background:${s.obg};border-bottom:1px solid ${s.ob}">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
+        <span class="owner-badge" style="color:${s.oc}">Owner: ${s.owner}</span>
+        <span class="timing" style="color:${s.oc}">${s.timing}</span>
+      </div>
+      <div class="step-icon">${s.icon}</div>
+      <div class="card-title" style="color:${s.oc}">${s.label}</div>
+    </div>
+    <div class="card-body">${body}</div>`;
+
+  let dots = '';
+  steps.forEach((_, i) => {
+    dots += `<button class="dot" onclick="jump(${i})"
+      style="width:${i===cur?20:7}px;opacity:${i===cur?1:.4};background:${i===cur?'#1B2B4B':'rgba(0,0,0,.15)'}"></button>`;
+  });
+  document.getElementById('dots').innerHTML = dots;
+
+  document.getElementById('btn-prev').disabled = cur === 0;
+  const next = document.getElementById('btn-next');
+  next.textContent = cur === steps.length - 1 ? 'Done ✓' : 'Next →';
+  next.disabled = cur === steps.length - 1;
+}
+
+function go(dir) { jump(cur + dir); }
+function jump(i) {
+  if(i < 0 || i >= steps.length) return;
+  cur = i;
+  render();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+render();
+</script>
+</body>
+</html>
