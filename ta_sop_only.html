@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>X-Camp TA Setup Guide</title>
+<title>1 on 1 OH: TA Zoom Setup Guide and Guidebook</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#F8F9FA;color:#1B2B4B;min-height:100vh;padding:24px 16px}
 .wrap{max-width:720px;margin:0 auto}
 h1{font-size:22px;font-weight:500;margin-bottom:4px}
 .sub{font-size:13px;color:#5F5E5A;margin-bottom:20px}
-.label{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#5F5E5A;margin-bottom:4px}
+.lbl{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#5F5E5A;margin-bottom:4px}
 .prog-row{display:flex;justify-content:space-between;font-size:11px;color:#5F5E5A;margin-bottom:6px}
 .prog-track{height:6px;background:#F1EFE8;border-radius:4px;overflow:hidden;margin-bottom:16px}
 .prog-fill{height:100%;background:#1D9E75;border-radius:4px;transition:width .3s}
 .pills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:20px}
-.pill{display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:400;cursor:pointer;border:.5px solid #e0dfd8;background:#fff;color:#5F5E5A;transition:all .15s}
+.pill{display:flex;align-items:center;gap:5px;padding:4px 10px;border-radius:20px;font-size:11px;cursor:pointer;border:.5px solid #e0dfd8;background:#fff;color:#5F5E5A;transition:all .15s}
 .pill.active{font-weight:500}
 .card{background:#fff;border:.5px solid rgba(0,0,0,.08);border-radius:14px;overflow:hidden;margin-bottom:16px}
 .card-head{padding:20px 24px}
@@ -24,7 +24,7 @@ h1{font-size:22px;font-weight:500;margin-bottom:4px}
 .step-icon{font-size:26px;margin-bottom:6px}
 .card-title{font-size:18px;font-weight:500;margin-bottom:4px}
 .card-body{padding:24px}
-.section{margin-bottom:20px}
+.section{margin-bottom:24px}
 .sec-head{font-size:14px;font-weight:500;color:#1B2B4B;margin-bottom:8px}
 .body-text{font-size:13px;color:#5F5E5A;line-height:1.7;margin-bottom:8px}
 .arr-list{margin:4px 0}
@@ -39,14 +39,30 @@ h1{font-size:22px;font-weight:500;margin-bottom:4px}
 .check-box.done .check-tick{display:block}
 .check-label{font-size:13px;color:#1B2B4B;line-height:1.5;transition:all .15s}
 .check-label.done{color:#5F5E5A;text-decoration:line-through}
-.highlight{border-radius:8px;padding:12px 14px;margin:12px 0;font-size:13px;line-height:1.6}
-.template{background:#F8F9FA;border:.5px solid rgba(0,0,0,.08);border-radius:8px;padding:12px 14px;margin:12px 0}
-.template-to{font-size:11px;color:#5F5E5A;margin-bottom:6px}
-.template-body{font-size:13px;color:#1B2B4B;line-height:1.8;font-style:italic;white-space:pre-line}
+.hl{border-radius:8px;padding:12px 14px;margin:12px 0;font-size:13px;line-height:1.6}
+.tpl{background:#F8F9FA;border:.5px solid rgba(0,0,0,.08);border-radius:8px;padding:12px 14px;margin:12px 0}
+.tpl-to{font-size:11px;color:#5F5E5A;margin-bottom:6px}
+.tpl-body{font-size:13px;color:#1B2B4B;line-height:1.8;font-style:italic;white-space:pre-line}
 .tbl{width:100%;border-collapse:collapse;font-size:12px;margin:12px 0}
 .tbl th{text-align:left;padding:8px 10px;background:#F1EFE8;color:#5F5E5A;font-weight:500;border-bottom:1px solid rgba(0,0,0,.08)}
 .tbl td{padding:8px 10px;color:#1B2B4B;border-bottom:.5px solid rgba(0,0,0,.06);vertical-align:top;line-height:1.5}
 .tbl tr:nth-child(even) td{background:#F8F9FA}
+/* Shared block */
+.shared-block{border:2.5px solid #1B2B4B;border-radius:12px;overflow:hidden;margin:12px 0}
+.shared-head{background:#1B2B4B;padding:12px 16px;display:flex;align-items:center;gap:10px}
+.shared-badge{background:#1D9E75;color:#fff;font-size:11px;font-weight:600;padding:3px 12px;border-radius:20px;letter-spacing:.04em}
+.shared-title{font-size:13px;font-weight:500;color:#fff}
+.shared-body{background:#EEF2FF;padding:12px 16px}
+.shared-row{display:flex;gap:8px;align-items:flex-start;padding:7px 0;border-bottom:.5px solid rgba(27,43,75,.12);font-size:13px}
+.shared-row:last-child{border-bottom:none}
+.tag-type{padding:2px 8px;border-radius:6px;font-size:10px;font-weight:500;background:#D3D1C7;color:#2C2C2A;flex-shrink:0;margin-top:3px}
+.tag-req{padding:2px 8px;border-radius:6px;font-size:10px;font-weight:500;background:#DCFCE7;color:#166534;flex-shrink:0;margin-top:3px}
+/* Session-specific blocks */
+.sess-block{border:.5px solid rgba(0,0,0,.1);border-radius:10px;overflow:hidden;margin:10px 0}
+.sess-head{padding:10px 16px;font-size:13px;font-weight:500}
+.sess-body{padding:10px 16px;background:#fff}
+.sess-row{display:flex;gap:8px;align-items:flex-start;padding:6px 0;border-bottom:.5px solid rgba(0,0,0,.06);font-size:12px}
+.sess-row:last-child{border-bottom:none}
 .nav{display:flex;justify-content:space-between;align-items:center}
 .nav-btn{padding:8px 18px;border-radius:8px;font-size:13px;cursor:pointer;border:.5px solid rgba(0,0,0,.08);background:#F8F9FA;color:#1B2B4B;transition:all .15s}
 .nav-btn:disabled{opacity:.4;cursor:not-allowed}
@@ -57,222 +73,365 @@ h1{font-size:22px;font-weight:500;margin-bottom:4px}
 </head>
 <body>
 <div class="wrap">
-  <div class="label">X-Camp Academy · TA Setup</div>
-  <h1>TA Setup Guide</h1>
+  <div class="lbl">X-Camp Academy · TA Setup</div>
+  <h1>1 on 1 OH: TA Zoom Setup Guide and Guidebook</h1>
   <p class="sub">Everything you need to complete before your first student session.</p>
-
-  <div class="prog-row">
-    <span id="prog-label">Step 1 of 4</span>
-    <span id="prog-pct">0% complete</span>
-  </div>
+  <div class="prog-row"><span id="prog-label">Step 1 of 8</span><span id="prog-pct">0% complete</span></div>
   <div class="prog-track"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
-
   <div class="pills" id="pills"></div>
   <div class="card" id="step-card"></div>
-
   <div class="nav">
     <button class="nav-btn" id="btn-prev" onclick="go(-1)">← Prev</button>
     <div class="dots" id="dots"></div>
     <button class="nav-btn primary" id="btn-next" onclick="go(1)">Next →</button>
   </div>
 </div>
-
 <script>
-const C = {
-  teal:"#0F6E56", tealLight:"#1D9E75", tealBg:"#E1F5EE", tealBorder:"#9FE1CB",
-  amber:"#854F0B", amberBg:"#FAEEDA", amberBorder:"#FAC775",
-  purple:"#3C3489", purpleBg:"#EEEDFE", purpleBorder:"#CECBF6",
-};
-
 const steps = [
   {
     id:"accept", icon:"🔐", label:"Accept & connect",
-    owner:"TA", timing:"Day 1",
-    oc:C.tealLight, obg:C.tealBg, ob:C.tealBorder,
-    items:[
-      { h:"Before you start",
-        body:"Your program manager has already purchased a Zoom Business+ seat for you and sent an invite to your personal Google email. Check your inbox before continuing." },
-      { h:"Step by step",
-        list:[
-          "Check your personal Google email inbox for the Zoom organization invite from X-Camp",
-          "Click Accept Invite — this links your personal Google account to the X-Camp Zoom organization",
-          "Sign into zoom.us using your personal Google email (not a separate Zoom password)",
-          "Go to Zoom Settings then Calendar then Connect Calendar",
-          "Select Google Calendar and choose Two-Way Sync",
-          "Confirm the sync is active — your personal calendar events should now appear as blocked time in Zoom Scheduler",
-        ] },
-      { h:"Why two-way Google Calendar sync matters",
-        body:"With two-way sync, any personal commitment you add to Google Calendar — classes, part-time work, appointments — automatically blocks that slot across all four of your Zoom Scheduler booking pages. Students cannot book a slot you are unavailable for, without you needing to manage two calendars separately.",
-        hl:{ text:"You only need your Zoom Business+ account — no separate Google organization account is required. Your personal Google Calendar handles availability management automatically.", c:C.tealLight, bg:C.tealBg, border:C.tealBorder } },
-      { h:"Your checklist",
-        checks:[
-          "Zoom org invite accepted from X-Camp",
-          "Signed into zoom.us with personal Google email",
-          "Google Calendar connected with two-way sync enabled",
-          "Verified: a personal calendar event blocks the slot in Zoom Scheduler",
-        ] }
-    ]
+    owner:"TA", timing:"Day 1", oc:"#1D9E75", obg:"#E1F5EE", ob:"#9FE1CB",
+    html:`
+      <div class="section"><div class="sec-head">Before you start</div>
+        <div class="body-text">Your program manager has already purchased a Zoom Business+ seat for you and sent an invite to your personal Google email. Check your inbox before continuing.</div>
+      </div>
+      <div class="section"><div class="sec-head">Step by step</div>
+        <div class="arr-list">
+          <div class="arr-item"><span class="arr">→</span><span>Check your personal Google email inbox for the Zoom organization invite from X-Camp</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>Click Accept Invite — this links your personal Google account to the X-Camp Zoom organization</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>Sign into zoom.us using your personal Google email (not a separate Zoom password)</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>Go to Zoom Settings then Calendar then Connect Calendar</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>Select Google Calendar and choose Two-Way Sync</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>Confirm the sync is active — your personal calendar events should now appear as blocked time in Zoom Scheduler</span></div>
+        </div>
+      </div>
+      <div class="section"><div class="sec-head">Why two-way Google Calendar sync matters</div>
+        <div class="body-text">With two-way sync, any personal commitment you add to Google Calendar automatically blocks that slot across all four Zoom Scheduler booking pages. Students cannot book a slot you are unavailable for.</div>
+        <div class="hl" style="background:#E1F5EE;border:1px solid #9FE1CB;color:#0F6E56">You only need your Zoom Business+ account — no separate Google organization account is required. Your personal Google Calendar handles availability management automatically.</div>
+      </div>
+      <div class="section"><div class="sec-head">Your checklist</div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Zoom org invite accepted from X-Camp</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Signed into zoom.us with personal Google email</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Google Calendar connected with two-way sync enabled</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Verified: a personal calendar event blocks the slot in Zoom Scheduler</span></div>
+      </div>`
   },
   {
     id:"pages", icon:"📅", label:"Create booking pages",
-    owner:"TA", timing:"Day 1–2",
-    oc:C.tealLight, obg:C.tealBg, ob:C.tealBorder,
-    items:[
-      { h:"Where to go",
-        body:"Go to scheduler.zoom.us and sign in with your Zoom account. Click Create then Booking Page. You will repeat this four times — one per session type." },
-      { h:"Create these four pages in this order",
-        table:{ heads:["Page name","Duration","Key questionnaire gate"], rows:[
-          ["Conceptual Session — X-Camp OH","25 min","Hint video Y/N · Pseudocode paste required"],
-          ["Debugging Session — X-Camp OH","15 min","Code paste required to confirm booking"],
-          ["Code Review — X-Camp OH","20 min","Accepted code paste required"],
-          ["Catch-up Session — X-Camp OH","30 min","Weeks behind + reason required"],
-        ]} },
-      { h:"Settings to apply to every page",
-        list:[
-          "Buffer time: 5 minutes after every session",
-          "Max advance booking: 5 days",
-          "Cancellation policy: 24 hours before session",
-          "Max bookings per day: 3 (prevents back-to-back burnout)",
-          "Reminders: 24h email + SMS, 1h email + SMS",
-        ] },
-      { h:"How conflict detection works across pages",
-        body:"All four pages draw from the same underlying calendar — your Zoom account. A booking on any one page automatically blocks that same time slot on all other three pages. No extra configuration needed.",
-        hl:{ text:"All four pages must be created under the same Zoom login. If pages are split across two accounts, cross-page conflict detection will not work.", c:C.amber, bg:C.amberBg, border:C.amberBorder } },
-      { h:"Your checklist",
-        checks:[
-          "Conceptual Session booking page created (25 min, questionnaire complete)",
-          "Debugging Session booking page created (15 min, code paste required)",
-          "Code Review booking page created (20 min, accepted code required)",
-          "Catch-up Session booking page created (30 min, weeks behind required)",
-          "Buffer time (5 min), cancellation policy (24h), and reminders set on all 4 pages",
-          "Availability hours configured to reflect your actual available time blocks",
-        ] }
-    ]
+    owner:"TA", timing:"Day 1–2", oc:"#1D9E75", obg:"#E1F5EE", ob:"#9FE1CB",
+    html:`
+      <div class="section"><div class="sec-head">Where to go</div>
+        <div class="body-text">Go to scheduler.zoom.us and sign in. Click Create then Booking Page. Repeat four times — one per session type. Name each page exactly as shown below.</div>
+      </div>
+      <div class="section"><div class="sec-head">Create these four pages</div>
+        <table class="tbl"><thead><tr><th>Page name</th><th>Duration</th><th>Key gate</th></tr></thead><tbody>
+          <tr><td>Conceptual Session — X-Camp OH</td><td>25 min</td><td>Hint video Y/N · Pseudocode required</td></tr>
+          <tr><td>Debugging Session — X-Camp OH</td><td>15 min</td><td>Code paste required</td></tr>
+          <tr><td>Code Review — X-Camp OH</td><td>20 min</td><td>Accepted code paste required</td></tr>
+          <tr><td>Catch-up Session — X-Camp OH</td><td>30 min</td><td>Weeks behind + reason required</td></tr>
+        </tbody></table>
+      </div>
+      <div class="section"><div class="sec-head">Settings to apply to every page</div>
+        <div class="arr-list">
+          <div class="arr-item"><span class="arr">→</span><span>Buffer time: 5 minutes after every session</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>Max advance booking: 5 days</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>Cancellation policy: 24 hours before session</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>Max bookings per day: 3</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>Reminders: 24h email + SMS, 1h email + SMS</span></div>
+        </div>
+      </div>
+      <div class="section"><div class="sec-head">Cross-page conflict detection</div>
+        <div class="body-text">All four pages draw from the same underlying calendar. A booking on any page blocks the same slot on all other three pages automatically.</div>
+        <div class="hl" style="background:#FAEEDA;border:1px solid #FAC775;color:#854F0B">All four pages must be created under the same Zoom login. If pages are split across two accounts, cross-page conflict detection will not work.</div>
+      </div>
+      <div class="section"><div class="sec-head">Your checklist</div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Conceptual Session booking page created (25 min)</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Debugging Session booking page created (15 min)</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Code Review booking page created (20 min)</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Catch-up Session booking page created (30 min)</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Buffer, cancellation, advance booking, and reminder settings applied to all 4 pages</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Availability hours configured to reflect your actual available time blocks</span></div>
+      </div>`
+  },
+  {
+    id:"questionnaire", icon:"📝", label:"Add questionnaires",
+    owner:"TA", timing:"Day 2", oc:"#3C3489", obg:"#EEEDFE", ob:"#CECBF6",
+    html:`
+      <div class="section"><div class="sec-head">Where to find it</div>
+        <div class="body-text">For each booking page: go to scheduler.zoom.us, click on the page, then go to Questions. Click Add Question for each field below. Set every field to Required.</div>
+        <div class="hl" style="background:#EEEDFE;border:1px solid #CECBF6;color:#3C3489">Zoom always collects Name and Email automatically — you do not need to add these. Parent email and phone come from enrollment records, not from students at booking.</div>
+      </div>
+
+      <div class="section">
+        <div class="sec-head">Step 1 — Add these 3 shared fields to ALL four booking pages</div>
+        <div class="shared-block">
+          <div class="shared-head">
+            <span class="shared-badge">★ Required on ALL 4 pages</span>
+            <span class="shared-title">Shared fields — add these first, every page</span>
+          </div>
+          <div class="shared-body">
+            <div class="shared-row">
+              <span class="tag-type">Multiple choice</span>
+              <span class="tag-req">Required</span>
+              <span style="color:#1B2B4B;line-height:1.6"><strong>What level of class are you in?</strong><br>Options: 200 &nbsp;/&nbsp; 201 &nbsp;/&nbsp; 202 &nbsp;&nbsp;(single answer)</span>
+            </div>
+            <div class="shared-row">
+              <span class="tag-type">Multiple choice</span>
+              <span class="tag-req">Required</span>
+              <span style="color:#1B2B4B;line-height:1.6"><strong>What week are you asking about?</strong><br>Options: Week 1 / Week 2 / Week 3 / Week 4 / Week 5 / Week 6 / Week 7 / Week 8 / Week 9 / Week 10 &nbsp;&nbsp;(single answer)</span>
+            </div>
+            <div class="shared-row">
+              <span class="tag-type">Text</span>
+              <span class="tag-req">Required</span>
+              <span style="color:#1B2B4B;line-height:1.6"><strong>What is the Problem ID?</strong><br>Short text field — student must fill in before booking is confirmed</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="sec-head">Step 2 — Add these session-specific fields to each page</div>
+
+        <div class="sess-block" style="border-color:#9FE1CB">
+          <div class="sess-head" style="background:#E1F5EE;color:#0F6E56">Conceptual Session — X-Camp OH &nbsp;<span style="font-weight:400;font-size:12px;opacity:.8">(add after shared fields)</span></div>
+          <div class="sess-body">
+            <div class="sess-row"><span class="tag-type">Text area</span><span class="tag-req">Required</span><span style="color:#1B2B4B;line-height:1.5">Describe in 2 to 3 sentences what you don't understand about the approach.</span></div>
+            <div class="sess-row"><span class="tag-type">Multiple choice</span><span class="tag-req">Required</span><span style="color:#1B2B4B;line-height:1.5">Have you watched the hint video for this problem? — Yes / No</span></div>
+            <div class="sess-row"><span class="tag-type">Text area</span><span class="tag-req">Required</span><span style="color:#1B2B4B;line-height:1.5">Paste any pseudocode or partial code you have written so far. Write none if you have nothing yet.</span></div>
+          </div>
+        </div>
+
+        <div class="sess-block" style="border-color:#FAC775">
+          <div class="sess-head" style="background:#FAEEDA;color:#854F0B">Debugging Session — X-Camp OH &nbsp;<span style="font-weight:400;font-size:12px;opacity:.8">(add after shared fields)</span></div>
+          <div class="sess-body">
+            <div class="sess-row"><span class="tag-type">Text area</span><span class="tag-req">Required</span><span style="color:#1B2B4B;line-height:1.5">Describe the error or failing test case.</span></div>
+            <div class="sess-row"><span class="tag-type">Text area</span><span class="tag-req">Required</span><span style="color:#1B2B4B;line-height:1.5">Paste your current code here. Booking will not be confirmed without this.</span></div>
+          </div>
+        </div>
+
+        <div class="sess-block" style="border-color:#CECBF6">
+          <div class="sess-head" style="background:#EEEDFE;color:#3C3489">Code Review — X-Camp OH &nbsp;<span style="font-weight:400;font-size:12px;opacity:.8">(add after shared fields)</span></div>
+          <div class="sess-body">
+            <div class="sess-row"><span class="tag-type">Text area</span><span class="tag-req">Required</span><span style="color:#1B2B4B;line-height:1.5">Paste your accepted or submitted code here.</span></div>
+            <div class="sess-row"><span class="tag-type">Text area</span><span class="tag-req">Required</span><span style="color:#1B2B4B;line-height:1.5">What specifically do you want feedback on? e.g. time complexity, readability, edge cases</span></div>
+          </div>
+        </div>
+
+        <div class="sess-block" style="border-color:#F5C4B3">
+          <div class="sess-head" style="background:#FAECE7;color:#993C1D">Catch-up Session — X-Camp OH &nbsp;<span style="font-weight:400;font-size:12px;opacity:.8">(add after shared fields)</span></div>
+          <div class="sess-body">
+            <div class="sess-row"><span class="tag-type">Text area</span><span class="tag-req">Required</span><span style="color:#1B2B4B;line-height:1.5">What prevented you from keeping up?</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section"><div class="sec-head">How to handle the hint video gate</div>
+        <div class="body-text">Zoom cannot auto-decline bookings based on answers. If a student answers No to the hint video question, send them this via Zoom Chat:</div>
+        <div class="tpl"><div class="tpl-to">To: Student (via Zoom Chat)</div>
+          <div class="tpl-body">Hi [Student Name], quick note before our session — for conceptual questions it really helps to watch the hint video for [Problem ID] first. Could you watch it before we meet? If you are still stuck after, we will go from there. Looking forward to it!</div>
+        </div>
+      </div>
+
+      <div class="section"><div class="sec-head">Your checklist</div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">All 4 pages: class level field added (200 / 201 / 202)</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">All 4 pages: week field added (Week 1 to Week 10)</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">All 4 pages: Problem ID field added (short text, required)</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Conceptual page: 3 additional fields added</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Debugging page: 2 additional fields added</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Code Review page: 2 additional fields added</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Catch-up page: 1 additional field added</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Tested each page by submitting a test booking and confirming all fields appear</span></div>
+      </div>`
+  },
+  {
+    id:"presession", icon:"📋", label:"Pre-session routine",
+    owner:"TA", timing:"Before every session", oc:"#2563EB", obg:"#EFF6FF", ob:"#93C5FD",
+    html:`
+      <div class="section"><div class="sec-head">24 to 48 hours before every session</div>
+        <div class="body-text">Open the student's questionnaire response in Zoom Scheduler. Ask yourself: if I walked into this session right now, could I help this student effectively?</div>
+        <div class="arr-list">
+          <div class="arr-item"><span class="arr">→</span><span>Read their description — is it specific enough to prepare from?</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>Pull up the problem yourself and review the relevant concept</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>For debugging: paste their code and try to reproduce the bug yourself before the session</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>For conceptual: identify the exact insight the student is likely missing</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>If the questionnaire is vague — send Template A below</span></div>
+        </div>
+      </div>
+      <div class="section"><div class="sec-head">Template A — vague questionnaire follow-up</div>
+        <div class="tpl"><div class="tpl-to">To: Student via Zoom Chat</div>
+          <div class="tpl-body">Hi [Student Name], looking forward to our session on [date]! I noticed your booking mentions [Problem ID] — could you tell me a bit more about which specific part you are stuck on, and share any code or pseudocode you have written so far? That way I can prepare and we will make the most of our time. Thanks!</div>
+        </div>
+      </div>
+      <div class="section"><div class="sec-head">Template B — hint video reminder</div>
+        <div class="tpl"><div class="tpl-to">To: Student via Zoom Chat</div>
+          <div class="tpl-body">Hi [Student Name], quick note before our session — for conceptual questions it really helps to watch the hint video for [Problem ID] first. Could you watch it before we meet? If you are still stuck after, we will go from there. Looking forward to it!</div>
+        </div>
+      </div>
+      <div class="section"><div class="sec-head">10 minutes before the session</div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Problem is open in your browser</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Student questionnaire re-read</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Opening question prepared — what will you ask first?</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Student session history checked if they have had prior sessions</span></div>
+      </div>`
+  },
+  {
+    id:"noshow", icon:"⏱", label:"No-show protocol",
+    owner:"TA", timing:"During session", oc:"#BA7517", obg:"#FAEEDA", ob:"#FAC775",
+    html:`
+      <div class="section"><div class="sec-head">The timeline — follow this exactly every time</div>
+        <table class="tbl"><thead><tr><th>Time</th><th>Action</th><th>How</th></tr></thead><tbody>
+          <tr><td>T+0</td><td>Zoom auto-sends join reminder to student</td><td>Automated — no TA action</td></tr>
+          <tr><td>T+5</td><td>Send student an email reminder with the Zoom join link</td><td>TA manually via email</td></tr>
+          <tr><td>T+8</td><td>Contact Class Coordinator in Lark to flag the no-show</td><td>TA via Lark DM to CC</td></tr>
+          <tr><td>T+13</td><td>Let CC know student is a no-show, end the meeting</td><td>TA via Lark DM, then end Zoom</td></tr>
+          <tr><td>Same day</td><td>Add no-show tag and note in Zoom session notes</td><td>TA action — 1 minute</td></tr>
+        </tbody></table>
+      </div>
+      <div class="section"><div class="sec-head">Email script at T+5</div>
+        <div class="tpl"><div class="tpl-to">To: Student Zoom registration email</div>
+          <div class="tpl-body">Hi [Student], your X-Camp session with me started 5 minutes ago. Please join now: [Zoom link]</div>
+        </div>
+      </div>
+      <div class="section"><div class="sec-head">Lark message to CC at T+8</div>
+        <div class="tpl"><div class="tpl-to">To: Class Coordinator via Lark DM</div>
+          <div class="tpl-body">Hi [CC Name], [Student Name] has not joined their session scheduled at [time] today. I have already sent them an email reminder. Could you help reach out? I will end the session at T+13 if there is no response.</div>
+        </div>
+      </div>
+      <div class="section"><div class="sec-head">Lark message to CC at T+13</div>
+        <div class="tpl"><div class="tpl-to">To: Class Coordinator via Lark DM</div>
+          <div class="tpl-body">Hi [CC Name], [Student Name] did not join. Marking this as a no-show and ending the session now. Please note this for their record.</div>
+        </div>
+      </div>
+      <div class="section"><div class="sec-head">What happens after — CC handles follow-up</div>
+        <div class="arr-list">
+          <div class="arr-item"><span class="arr">→</span><span>1st no-show: CC is noted and logs it in the student record.</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>2nd no-show: CC sends a note to parents directly warning them about the missed sessions.</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>3rd no-show: you may cancel the student's future bookings. Notify CC when doing so.</span></div>
+        </div>
+        <div class="hl" style="background:#FAEEDA;border:1px solid #FAC775;color:#854F0B">You never contact parents directly. All parent communication goes through the Class Coordinator. Your role is to notify CC promptly so they can act.</div>
+      </div>`
+  },
+  {
+    id:"postsession", icon:"✅", label:"After every session",
+    owner:"TA", timing:"Within 10 min of session end", oc:"#1D9E75", obg:"#E1F5EE", ob:"#9FE1CB",
+    html:`
+      <div class="section"><div class="sec-head">In Zoom — within 10 minutes of session end</div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Add a concept tag: the topic covered e.g. BFS, two pointers, DP, recursion</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Add an outcome tag: resolved / unresolved / above-level question / student unprepared</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Add TA notes: 2 to 3 sentences on what was covered and the student action item</span></div>
+      </div>
+      <div class="section"><div class="sec-head">Zoom AI does automatically</div>
+        <div class="arr-list">
+          <div class="arr-item"><span class="arr">→</span><span>Generates a session summary and sends it to the student email within 2 hours</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>Extracts keywords for the management dashboard weekly report</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>Logs session duration and metadata for your performance dashboard</span></div>
+        </div>
+      </div>
+      <div class="section"><div class="sec-head">Flagging above-level students</div>
+        <div class="body-text">If a student consistently brings problems well beyond the 201/202 level:</div>
+        <div class="arr-list">
+          <div class="arr-item"><span class="arr">→</span><span>Tag the session: above-level question in Zoom</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>In the session redirect: "This is a great problem — it is actually level 300. Let us make sure you are solid on 201 first, and I will note this for your coordinator."</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>After 2 flags for the same student, the system auto-alerts management. You do not need to do anything further.</span></div>
+        </div>
+        <div class="hl" style="background:#E1F5EE;border:1px solid #9FE1CB;color:#0F6E56">You are not responsible for sustained instruction on well-above-level material. Redirect, tag, and move on.</div>
+      </div>`
   },
   {
     id:"test", icon:"🧪", label:"Test with PM",
-    owner:"TA + Program Manager", timing:"Day 2–3",
-    oc:C.purple, obg:C.purpleBg, ob:C.purpleBorder,
-    items:[
-      { h:"What gets tested",
-        body:"Your program manager will open each of your 4 booking URLs and run a test booking. You will also run a short test Zoom meeting together to confirm AI summaries are working. Do not share your URLs with students until the PM has confirmed everything passes." },
-      { h:"What the PM checks",
-        list:[
-          "All 4 booking pages load correctly with the right questionnaire fields",
-          "Duration is correct per page (25 / 15 / 20 / 30 min)",
-          "5-minute buffer appears after each booked slot",
-          "Cancellation policy shows 24 hours",
-          "Booking on one page blocks the same slot on all other three pages",
-          "Reminder confirmation email arrives after booking",
-          "AI summary generates and is emailed after a test Zoom meeting",
-        ] },
-      { h:"Your role in the test",
-        list:[
-          "Be available for a short 2-minute test Zoom call with the PM",
-          "Cancel all test bookings after the PM confirms everything passes",
-          "Flag any issues immediately — e.g. wrong duration, missing questionnaire field",
-        ] },
-      { h:"Your checklist",
-        checks:[
-          "Available for test call with program manager",
-          "Confirmed all 4 pages pass PM verification",
-          "All test bookings cancelled after verification",
-          "AI summary confirmed working after test meeting",
-        ] }
-    ]
+    owner:"TA + Program Manager", timing:"Day 2–3", oc:"#3C3489", obg:"#EEEDFE", ob:"#CECBF6",
+    html:`
+      <div class="section"><div class="sec-head">What gets tested</div>
+        <div class="body-text">Your program manager will open each of your 4 booking URLs and run a test booking. You will also run a short test Zoom meeting together to confirm AI summaries are working. Do not share your URLs with students until the PM confirms everything passes.</div>
+      </div>
+      <div class="section"><div class="sec-head">What the PM checks</div>
+        <div class="arr-list">
+          <div class="arr-item"><span class="arr">→</span><span>All 4 booking pages load correctly with the right questionnaire fields including the 3 shared fields</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>Duration is correct per page (25 / 15 / 20 / 30 min)</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>5-minute buffer appears after each booked slot</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>Cancellation policy shows 24 hours</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>Booking on one page blocks the same slot on all other three pages</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>Reminder confirmation email arrives after booking</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>AI summary generates and is emailed after a test Zoom meeting</span></div>
+        </div>
+      </div>
+      <div class="section"><div class="sec-head">Your role in the test</div>
+        <div class="arr-list">
+          <div class="arr-item"><span class="arr">→</span><span>Be available for a short 2-minute test Zoom call with the PM</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>Cancel all test bookings after the PM confirms everything passes</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>Flag any issues immediately — e.g. wrong duration, missing questionnaire field</span></div>
+        </div>
+      </div>
+      <div class="section"><div class="sec-head">Your checklist</div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Available for test call with program manager</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Confirmed all 4 pages pass PM verification</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">All test bookings cancelled after verification</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">AI summary confirmed working after test meeting</span></div>
+      </div>`
   },
   {
     id:"submit", icon:"🔗", label:"Submit URLs",
-    owner:"TA", timing:"Day 3",
-    oc:C.tealLight, obg:C.tealBg, ob:C.tealBorder,
-    items:[
-      { h:"How to get your 4 booking URLs",
-        list:[
-          "Go to scheduler.zoom.us and open your booking pages list",
-          "Click on each page and copy the booking URL from the top of the page",
-          "URL format will look like: scheduler.zoom.us/your-name/page-name",
-          "Copy all 4 URLs — one per session type",
-        ] },
-      { h:"How to submit",
-        tpl:{ to:"Program Manager via Lark DM", body:"Hi [PM Name], here are my 4 booking URLs for this quarter:\n\nConceptual (25 min): [URL]\nDebugging (15 min): [URL]\nCode Review (20 min): [URL]\nCatch-up (30 min): [URL]\n\nAll pages are set up and tested. Ready to go live." } },
-      { h:"What happens after you submit",
-        body:"Once you send the URLs, your setup is complete. The program manager records them centrally and passes them to the teaching management team and class coordinators. They handle all teacher announcements, class channel posts, and parent broadcasts. You do not need to share your URLs with anyone else.",
-        hl:{ text:"Your job ends here. You will receive a message from the program manager when students can start booking. From that point, just check your Zoom Scheduler regularly for new bookings.", c:C.tealLight, bg:C.tealBg, border:C.tealBorder } },
-      { h:"Your checklist",
-        checks:[
-          "All 4 URLs copied from Zoom Scheduler",
-          "URLs sent to program manager via Lark DM with correct labels",
-          "Received go-live confirmation from program manager",
-          "Zoom Scheduler checked — ready to receive student bookings",
-        ] }
-    ]
+    owner:"TA", timing:"Day 3", oc:"#1D9E75", obg:"#E1F5EE", ob:"#9FE1CB",
+    html:`
+      <div class="section"><div class="sec-head">How to get your 4 booking URLs</div>
+        <div class="arr-list">
+          <div class="arr-item"><span class="arr">→</span><span>Go to scheduler.zoom.us and open your booking pages list</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>Click on each page and copy the booking URL from the top of the page</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>URL format will look like: scheduler.zoom.us/your-name/page-name</span></div>
+          <div class="arr-item"><span class="arr">→</span><span>Copy all 4 URLs — one per session type</span></div>
+        </div>
+      </div>
+      <div class="section"><div class="sec-head">How to submit</div>
+        <div class="tpl"><div class="tpl-to">Program Manager via Lark DM</div>
+          <div class="tpl-body">Hi [PM Name], here are my 4 booking URLs for this quarter:
+
+Conceptual (25 min): [URL]
+Debugging (15 min): [URL]
+Code Review (20 min): [URL]
+Catch-up (30 min): [URL]
+
+All pages are set up and tested. Ready to go live.</div>
+        </div>
+      </div>
+      <div class="section"><div class="sec-head">What happens after you submit</div>
+        <div class="body-text">Once you send the URLs, your setup is complete. The program manager records them centrally and passes them to the teaching management team and class coordinators. They handle all announcements, class channel posts, and parent broadcasts.</div>
+        <div class="hl" style="background:#E1F5EE;border:1px solid #9FE1CB;color:#0F6E56">Your job ends here. You will receive a message from the program manager when students can start booking. From that point, just check your Zoom Scheduler regularly for new bookings.</div>
+      </div>
+      <div class="section"><div class="sec-head">Your final checklist</div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">All 4 URLs copied from Zoom Scheduler</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">URLs sent to program manager via Lark DM with correct labels</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Received go-live confirmation from program manager</span></div>
+        <div class="check-item" onclick="chk(this)"><div class="check-box"><span class="check-tick">✓</span></div><span class="check-label">Zoom Scheduler checked — ready to receive student bookings</span></div>
+      </div>`
   },
 ];
 
 let cur = 0;
-const checkState = {};
 
-function renderSection(item, sid) {
-  let html = `<div class="section"><div class="sec-head">${item.h}</div>`;
-  if(item.body) html += `<div class="body-text">${item.body}</div>`;
-  if(item.hl) html += `<div class="highlight" style="background:${item.hl.bg};border:1px solid ${item.hl.border};color:${item.hl.c}">${item.hl.text}</div>`;
-  if(item.tpl) html += `<div class="template"><div class="template-to">To: ${item.tpl.to}</div><div class="template-body">${item.tpl.body}</div></div>`;
-  if(item.list) {
-    html += `<div class="arr-list">`;
-    item.list.forEach(t => { html += `<div class="arr-item"><span class="arr">→</span><span>${t}</span></div>`; });
-    html += `</div>`;
-  }
-  if(item.table) {
-    html += `<table class="tbl"><thead><tr>`;
-    item.table.heads.forEach(h => { html += `<th>${h}</th>`; });
-    html += `</tr></thead><tbody>`;
-    item.table.rows.forEach(row => {
-      html += `<tr>`;
-      row.forEach(cell => { html += `<td>${cell}</td>`; });
-      html += `</tr>`;
-    });
-    html += `</tbody></table>`;
-  }
-  if(item.checks) {
-    if(!checkState[sid]) checkState[sid] = {};
-    item.checks.forEach((t, i) => {
-      if(checkState[sid][i] === undefined) checkState[sid][i] = false;
-      const done = checkState[sid][i];
-      html += `<div class="check-item" onclick="toggleCheck('${sid}',${i})">
-        <div class="check-box${done?' done':''}"><span class="check-tick">✓</span></div>
-        <span class="check-label${done?' done':''}">${t}</span>
-      </div>`;
-    });
-  }
-  html += `</div>`;
-  return html;
-}
-
-function toggleCheck(sid, idx) {
-  if(!checkState[sid]) checkState[sid] = {};
-  checkState[sid][idx] = !checkState[sid][idx];
-  render();
+function chk(el) {
+  const box = el.querySelector('.check-box');
+  const lbl = el.querySelector('.check-label');
+  const done = box.classList.toggle('done');
+  const tick = box.querySelector('.check-tick');
+  tick.style.display = done ? 'block' : 'none';
+  lbl.classList.toggle('done', done);
 }
 
 function render() {
   const s = steps[cur];
   const pct = Math.round((cur / (steps.length - 1)) * 100);
-
   document.getElementById('prog-label').textContent = `Step ${cur+1} of ${steps.length}`;
   document.getElementById('prog-pct').textContent = `${pct}% complete`;
   document.getElementById('prog-fill').style.width = pct + '%';
 
   let pills = '';
   steps.forEach((st, i) => {
-    const active = i === cur;
-    pills += `<button class="pill${active?' active':''}" onclick="jump(${i})"
-      style="${active?`border-color:${st.oc};background:${st.obg};color:${st.oc}`:''}">
+    const a = i === cur;
+    pills += `<button class="pill${a?' active':''}" onclick="jump(${i})"
+      style="${a?`border-color:${st.oc};background:${st.obg};color:${st.oc}`:''}">
       <span>${st.icon}</span>${st.label}</button>`;
   });
   document.getElementById('pills').innerHTML = pills;
-
-  let body = '';
-  s.items.forEach(item => { body += renderSection(item, s.id); });
 
   document.getElementById('step-card').innerHTML = `
     <div class="card-head" style="background:${s.obg};border-bottom:1px solid ${s.ob}">
@@ -283,7 +442,7 @@ function render() {
       <div class="step-icon">${s.icon}</div>
       <div class="card-title" style="color:${s.oc}">${s.label}</div>
     </div>
-    <div class="card-body">${body}</div>`;
+    <div class="card-body">${s.html}</div>`;
 
   let dots = '';
   steps.forEach((_, i) => {
