@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>X-Camp Office Hours — Student Guide</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#F8F9FA;color:#1B2B4B;min-height:100vh;padding:24px 16px}
+.wrap{max-width:680px;margin:0 auto}
+h1{font-size:22px;font-weight:500;margin-bottom:4px}
+.sub{font-size:13px;color:#5F5E5A;margin-bottom:20px}
+.lbl{font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#5F5E5A;margin-bottom:4px}
+.pills{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:20px}
+.pill{display:flex;align-items:center;gap:5px;padding:5px 12px;border-radius:20px;font-size:12px;cursor:pointer;border:.5px solid #e0dfd8;background:#fff;color:#5F5E5A;transition:all .15s}
+.pill.active{font-weight:500}
+.card{background:#fff;border:.5px solid rgba(0,0,0,.08);border-radius:14px;overflow:hidden;margin-bottom:16px}
+.card-head{padding:20px 24px}
+.ch-icon{font-size:28px;margin-bottom:6px}
+.ch-title{font-size:18px;font-weight:500;margin-bottom:4px}
+.ch-sub{font-size:13px;opacity:.8}
+.card-body{padding:24px}
+.section{margin-bottom:22px}
+.sec-head{font-size:14px;font-weight:500;color:#1B2B4B;margin-bottom:8px}
+.body-text{font-size:13px;color:#5F5E5A;line-height:1.7;margin-bottom:8px}
+.hl{border-radius:8px;padding:12px 14px;margin:10px 0;font-size:13px;line-height:1.6}
+.arr-list{margin:6px 0}
+.arr-item{display:flex;gap:8px;padding:6px 0;border-bottom:.5px solid rgba(0,0,0,.06);font-size:13px;color:#5F5E5A;line-height:1.5}
+.arr-item:last-child{border-bottom:none}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;margin:10px 0}
+.tbl th{text-align:left;padding:8px 10px;background:#F1EFE8;color:#5F5E5A;font-weight:500;border-bottom:1px solid rgba(0,0,0,.08)}
+.tbl td{padding:8px 10px;color:#1B2B4B;border-bottom:.5px solid rgba(0,0,0,.06);vertical-align:top;line-height:1.5}
+.tbl tr:nth-child(even) td{background:#F8F9FA}
+.sess-card{border:.5px solid rgba(0,0,0,.1);border-radius:10px;overflow:hidden;margin-bottom:10px}
+.sess-head{padding:10px 16px;display:flex;justify-content:space-between;align-items:center}
+.sess-head-title{font-size:13px;font-weight:500}
+.sess-badge{font-size:11px;font-weight:500;padding:2px 10px;border-radius:20px;color:#fff}
+.sess-body{padding:12px 16px;background:#fff}
+.sess-row{display:flex;gap:8px;padding:5px 0;border-bottom:.5px solid rgba(0,0,0,.06);font-size:12px;align-items:flex-start}
+.sess-row:last-child{border-bottom:none}
+.sess-key{color:#5F5E5A;min-width:110px;flex-shrink:0;font-size:11px;margin-top:2px}
+.good-bad{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
+.good-box{background:#E1F5EE;border:1px solid #9FE1CB;border-radius:8px;padding:10px 12px}
+.bad-box{background:#FAECE7;border:1px solid #F5C4B3;border-radius:8px;padding:10px 12px}
+.box-label{font-size:11px;font-weight:600;margin-bottom:6px}
+.box-text{font-size:12px;line-height:1.6}
+.strike-row{display:flex;gap:10px;padding:8px 0;border-bottom:.5px solid rgba(0,0,0,.06);font-size:13px;align-items:flex-start}
+.strike-row:last-child{border-bottom:none}
+.strike-num{font-weight:500;min-width:80px;flex-shrink:0}
+.nav{display:flex;justify-content:space-between;align-items:center}
+.nav-btn{padding:8px 18px;border-radius:8px;font-size:13px;cursor:pointer;border:.5px solid rgba(0,0,0,.08);background:#F8F9FA;color:#1B2B4B}
+.nav-btn:disabled{opacity:.4;cursor:not-allowed}
+.nav-btn.primary{background:#1B2B4B;color:#fff;border-color:#1B2B4B}
+.dots{display:flex;gap:4px}
+.dot{height:7px;border-radius:4px;border:none;cursor:pointer;background:rgba(0,0,0,.15);transition:all .2s;padding:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="lbl">X-Camp Academy · Spring 2026</div>
+  <h1>Office Hours Student Guide</h1>
+  <p class="sub">Everything you need to book, prepare, and get the most from your 1-on-1 sessions.</p>
+  <div class="pills" id="pills"></div>
+  <div class="card" id="ch-card"></div>
+  <div class="nav">
+    <button class="nav-btn" id="btn-prev" onclick="go(-1)">← Prev</button>
+    <div class="dots" id="dots"></div>
+    <button class="nav-btn primary" id="btn-next" onclick="go(1)">Next →</button>
+  </div>
+</div>
+
+<script>
+const chapters = [
+  {
+    id:"types", icon:"🎯", label:"Session types",
+    title:"Pick the right session type",
+    sub:"There are 4 types. Choose before you book — each has a different link.",
+    oc:"#1D9E75", obg:"#E1F5EE", ob:"#9FE1CB",
+    html:`
+      <div class="section">
+        <div class="body-text">Your TA has four separate booking links — one per session type. Picking the wrong type wastes your session time. Read each description carefully before booking.</div>
+
+        <div class="sess-card">
+          <div class="sess-head" style="background:#E1F5EE">
+            <span class="sess-head-title" style="color:#0F6E56">🧠 Conceptual</span>
+            <span class="sess-badge" style="background:#1D9E75">25 min</span>
+          </div>
+          <div class="sess-body">
+            <div class="sess-row"><span class="sess-key">When to use</span><span style="color:#1B2B4B">You have watched the lecture and hint video but don't understand how to approach the problem algorithmically.</span></div>
+            <div class="sess-row"><span class="sess-key">What to bring</span><span style="color:#1B2B4B">Pseudocode or partial idea required. Hint video must be watched first.</span></div>
+            <div class="sess-row"><span class="sess-key">You leave with</span><span style="color:#1B2B4B">Pseudocode and an explanation you can give yourself. Full AC code is NOT expected.</span></div>
+          </div>
+        </div>
+
+        <div class="sess-card">
+          <div class="sess-head" style="background:#FAEEDA">
+            <span class="sess-head-title" style="color:#854F0B">🐛 Debugging</span>
+            <span class="sess-badge" style="background:#BA7517">15 min</span>
+          </div>
+          <div class="sess-body">
+            <div class="sess-row"><span class="sess-key">When to use</span><span style="color:#1B2B4B">Your code runs but fails test cases, or throws an error you cannot fix.</span></div>
+            <div class="sess-row"><span class="sess-key">What to bring</span><span style="color:#1B2B4B">Runnable code pasted in the booking form. No code = booking not confirmed.</span></div>
+            <div class="sess-row"><span class="sess-key">You leave with</span><span style="color:#1B2B4B">Bug found, fix understood, test cases passing.</span></div>
+          </div>
+        </div>
+
+        <div class="sess-card">
+          <div class="sess-head" style="background:#EEEDFE">
+            <span class="sess-head-title" style="color:#3C3489">🔍 Code Review</span>
+            <span class="sess-badge" style="background:#534AB7">20 min</span>
+          </div>
+          <div class="sess-body">
+            <div class="sess-row"><span class="sess-key">When to use</span><span style="color:#1B2B4B">Your code is accepted and you want to make it faster, cleaner, or more elegant.</span></div>
+            <div class="sess-row"><span class="sess-key">What to bring</span><span style="color:#1B2B4B">Paste your accepted or submitted code when booking.</span></div>
+            <div class="sess-row"><span class="sess-key">You leave with</span><span style="color:#1B2B4B">At least one concrete improvement understood and ready to apply.</span></div>
+          </div>
+        </div>
+
+        <div class="sess-card">
+          <div class="sess-head" style="background:#FAECE7">
+            <span class="sess-head-title" style="color:#993C1D">🏃 Catch-up</span>
+            <span class="sess-badge" style="background:#993C1D">30 min</span>
+          </div>
+          <div class="sess-body">
+            <div class="sess-row"><span class="sess-key">When to use</span><span style="color:#1B2B4B">You have fallen behind on multiple weeks and need help getting back on track.</span></div>
+            <div class="sess-row"><span class="sess-key">What to bring</span><span style="color:#1B2B4B">Describe which weeks and what prevented you from keeping up.</span></div>
+            <div class="sess-row"><span class="sess-key">You leave with</span><span style="color:#1B2B4B">One foundational concept solid. A clear self-study plan for the rest.</span></div>
+          </div>
+        </div>
+      </div>`
+  },
+  {
+    id:"prepare", icon:"📚", label:"Prepare",
+    title:"Prepare before you book",
+    sub:"Your TA reads your answers before the session. Make them count.",
+    oc:"#2563EB", obg:"#EFF6FF", ob:"#93C5FD",
+    html:`
+      <div class="section">
+        <div class="hl" style="background:#FAEEDA;border:1px solid #FAC775;color:#854F0B">If you have not watched the hint video, your Conceptual booking will be declined automatically. Your TA only has 25 minutes with you — that time should be spent on what is still confusing after the video, not re-explaining the video itself.</div>
+      </div>
+      <div class="section">
+        <div class="sec-head">Before booking a Conceptual session</div>
+        <div class="arr-list">
+          <div class="arr-item"><span style="color:#1D9E75;flex-shrink:0">✅</span><span>Watch the lecture video for this week</span></div>
+          <div class="arr-item"><span style="color:#1D9E75;flex-shrink:0">✅</span><span>Watch the hint video for your specific problem — this is mandatory</span></div>
+          <div class="arr-item"><span style="color:#1D9E75;flex-shrink:0">✅</span><span>Write at least some pseudocode or a rough idea — even if it is wrong</span></div>
+          <div class="arr-item"><span style="color:#1D9E75;flex-shrink:0">✅</span><span>Know your class level (200/201/202), the week number, and the Problem ID</span></div>
+          <div class="arr-item"><span style="color:#1D9E75;flex-shrink:0">✅</span><span>Be ready to describe the specific part that confuses you — not just the problem title</span></div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="sec-head">Before booking a Debugging session</div>
+        <div class="arr-list">
+          <div class="arr-item"><span style="color:#1D9E75;flex-shrink:0">✅</span><span>Your code must be runnable — even if it produces wrong output</span></div>
+          <div class="arr-item"><span style="color:#1D9E75;flex-shrink:0">✅</span><span>Know your class level, week number, and Problem ID</span></div>
+          <div class="arr-item"><span style="color:#1D9E75;flex-shrink:0">✅</span><span>Know which test case fails and what the error message says</span></div>
+          <div class="arr-item"><span style="color:#1D9E75;flex-shrink:0">✅</span><span>Be ready to paste your code in the booking form — no code = no booking</span></div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="sec-head">The difference between a good and bad question</div>
+        <div class="good-bad">
+          <div class="bad-box">
+            <div class="box-label" style="color:#993C1D">❌ Too vague</div>
+            <div class="box-text" style="color:#993C1D">"I don't understand Problem 3."<br/><br/>TA cannot prepare. Session starts from scratch.</div>
+          </div>
+          <div class="good-box">
+            <div class="box-label" style="color:#0F6E56">✅ Specific</div>
+            <div class="box-text" style="color:#0F6E56">"I don't understand why my BFS queue needs to track visited nodes — my code visits the same node twice."<br/><br/>TA can prepare the exact explanation you need.</div>
+          </div>
+        </div>
+      </div>`
+  },
+  {
+    id:"book", icon:"📅", label:"Book",
+    title:"How to book your session",
+    sub:"3 minutes. Use the right link for your session type.",
+    oc:"#3C3489", obg:"#EEEDFE", ob:"#CECBF6",
+    html:`
+      <div class="section">
+        <div class="body-text">Your TA will share four booking links in your class channel — one per session type. Always use the correct link. Each page has different questions and a different duration.</div>
+        <div class="arr-list">
+          <div class="arr-item"><span style="color:#3C3489;flex-shrink:0">🧠</span><span><strong>Conceptual</strong> — 25 min · Link shared by TA in class channel</span></div>
+          <div class="arr-item"><span style="color:#3C3489;flex-shrink:0">🐛</span><span><strong>Debugging</strong> — 15 min · Link shared by TA in class channel</span></div>
+          <div class="arr-item"><span style="color:#3C3489;flex-shrink:0">🔍</span><span><strong>Code Review</strong> — 20 min · Link shared by TA in class channel</span></div>
+          <div class="arr-item"><span style="color:#3C3489;flex-shrink:0">🏃</span><span><strong>Catch-up</strong> — 30 min · Link shared by TA in class channel</span></div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="sec-head">What the booking form asks you</div>
+        <div class="body-text">Every session type asks these three questions first:</div>
+        <div class="arr-list">
+          <div class="arr-item"><span style="color:#3C3489;flex-shrink:0">1.</span><span>What level of class are you in? — choose 200 / 201 / 202</span></div>
+          <div class="arr-item"><span style="color:#3C3489;flex-shrink:0">2.</span><span>What week are you asking about? — choose Week 1 through Week 10</span></div>
+          <div class="arr-item"><span style="color:#3C3489;flex-shrink:0">3.</span><span>What is the Problem ID? — short text, must fill in</span></div>
+        </div>
+        <div class="body-text" style="margin-top:8px">Then each session type has its own specific questions — describe your confusion, paste your code, etc.</div>
+      </div>
+      <div class="section">
+        <div class="sec-head">Booking rules</div>
+        <table class="tbl"><thead><tr><th>Rule</th><th>Detail</th></tr></thead><tbody>
+          <tr><td>Max sessions per week</td><td>2 sessions across all types</td></tr>
+          <tr><td>Max advance booking</td><td>5 days ahead</td></tr>
+          <tr><td>Cancellation deadline</td><td>At least 24 hours before your session</td></tr>
+          <tr><td>Hint video gate</td><td>Conceptual bookings declined if hint video not watched</td></tr>
+          <tr><td>Code required</td><td>Debugging bookings not confirmed without pasted code</td></tr>
+        </tbody></table>
+      </div>
+      <div class="section">
+        <div class="sec-head">After you book</div>
+        <div class="body-text">You will receive a Zoom confirmation email with the join link. Your TA may send you a follow-up if your questionnaire was vague — please respond promptly. The session cannot be productive if your TA did not have time to prepare.</div>
+      </div>`
+  },
+  {
+    id:"session", icon:"💻", label:"During session",
+    title:"What happens during your session",
+    sub:"Know what to expect so you can get the most out of it.",
+    oc:"#1D9E75", obg:"#E1F5EE", ob:"#9FE1CB",
+    html:`
+      <div class="section">
+        <div class="sec-head">Your TA will open with</div>
+        <div class="arr-list">
+          <div class="arr-item"><span style="color:#1D9E75;flex-shrink:0">→</span><span>Introducing themselves and stating how many minutes you have</span></div>
+          <div class="arr-item"><span style="color:#1D9E75;flex-shrink:0">→</span><span>Asking you to confirm your question — be ready to describe it out loud</span></div>
+          <div class="arr-item"><span style="color:#1D9E75;flex-shrink:0">→</span><span>Reminding you that the goal is for you to understand, not just get the answer</span></div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="hl" style="background:#E1F5EE;border:1px solid #9FE1CB;color:#0F6E56">
+          <strong>Your TA will ask you questions, not just explain things.</strong><br/>This is intentional. When your TA asks "What do you think happens to the variable here?" — they are not testing you. They are helping you find the answer yourself, which means you will actually remember it next time.
+        </div>
+      </div>
+      <div class="section">
+        <div class="sec-head">What you leave with — by session type</div>
+        <div class="arr-list">
+          <div class="arr-item"><span style="color:#1D9E75;flex-shrink:0;min-width:90px;font-weight:500">Conceptual</span><span style="color:#5F5E5A">Pseudocode you wrote yourself. You can explain the approach without notes. Full AC code is NOT expected.</span></div>
+          <div class="arr-item"><span style="color:#BA7517;flex-shrink:0;min-width:90px;font-weight:500">Debugging</span><span style="color:#5F5E5A">Bug found and understood. You know why it happened, not just that it is fixed. Test cases pass.</span></div>
+          <div class="arr-item"><span style="color:#3C3489;flex-shrink:0;min-width:90px;font-weight:500">Code Review</span><span style="color:#5F5E5A">One concrete improvement understood. You know how to apply it yourself.</span></div>
+          <div class="arr-item"><span style="color:#993C1D;flex-shrink:0;min-width:90px;font-weight:500">Catch-up</span><span style="color:#5F5E5A">One foundational concept solid. A clear self-study plan for the rest.</span></div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="sec-head">Your TA will close with</div>
+        <div class="arr-list">
+          <div class="arr-item"><span style="color:#1D9E75;flex-shrink:0">1.</span><span>A summary: "Today we worked through X. The key insight was Y."</span></div>
+          <div class="arr-item"><span style="color:#1D9E75;flex-shrink:0">2.</span><span>An action item: "Before next time, try Z on your own."</span></div>
+          <div class="arr-item"><span style="color:#1D9E75;flex-shrink:0">3.</span><span>An invitation: "Was this helpful? Anything you would like me to explain differently?"</span></div>
+        </div>
+      </div>`
+  },
+  {
+    id:"after", icon:"✅", label:"After session",
+    title:"After your session",
+    sub:"Three things to do before your next booking.",
+    oc:"#3C3489", obg:"#EEEDFE", ob:"#CECBF6",
+    html:`
+      <div class="section">
+        <div class="arr-list">
+          <div class="arr-item" style="padding:10px 0">
+            <span style="font-size:20px;flex-shrink:0">⭐</span>
+            <div>
+              <div style="font-weight:500;font-size:13px;color:#1B2B4B;margin-bottom:3px">Fill out the feedback survey</div>
+              <div style="font-size:13px;color:#5F5E5A;line-height:1.5">It arrives via email automatically right after your session. Takes 30 seconds. Your TA genuinely reads this — it directly affects their growth and rating.</div>
+            </div>
+          </div>
+          <div class="arr-item" style="padding:10px 0">
+            <span style="font-size:20px;flex-shrink:0">📧</span>
+            <div>
+              <div style="font-weight:500;font-size:13px;color:#1B2B4B;margin-bottom:3px">Check your email for the session summary</div>
+              <div style="font-size:13px;color:#5F5E5A;line-height:1.5">Zoom AI automatically sends a session summary to your email within 2 hours. It includes what was covered, your progress, and your action items.</div>
+            </div>
+          </div>
+          <div class="arr-item" style="padding:10px 0">
+            <span style="font-size:20px;flex-shrink:0">💻</span>
+            <div>
+              <div style="font-weight:500;font-size:13px;color:#1B2B4B;margin-bottom:3px">Start your action item today</div>
+              <div style="font-size:13px;color:#5F5E5A;line-height:1.5">Your TA gave you one specific thing to try on your own. Do it while the session is still fresh. Don't wait until the next session to discover you are still stuck.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="sec-head">What your parents receive</div>
+        <div class="body-text">Zoom AI automatically sends a session summary email to your parents within 2 hours of the session ending. It includes what was covered, your progress notes, and your action items. Everything is transparent — no surprises.</div>
+      </div>
+      <div class="section">
+        <div class="hl" style="background:#E1F5EE;border:1px solid #9FE1CB;color:#0F6E56">Still stuck after the session? Book another one through the correct booking link. Make sure you prepare your specific question before booking again — do not book the same type if the issue has changed.</div>
+      </div>`
+  },
+  {
+    id:"noshow", icon:"⚠️", label:"Cancellations",
+    title:"Cancellations & no-shows",
+    sub:"Please read this — it affects your booking access for the whole quarter.",
+    oc:"#993C1D", obg:"#FAECE7", ob:"#F5C4B3",
+    html:`
+      <div class="section">
+        <div class="sec-head">If you need to cancel</div>
+        <div class="body-text">Cancel at least <strong>24 hours before</strong> your session using the cancellation link in your Zoom confirmation email. Your TA can then offer that slot to another student. Cancelling with less than 24 hours notice — or not showing up — counts as a no-show.</div>
+      </div>
+      <div class="section">
+        <div class="sec-head">What happens if you miss a session</div>
+        <div class="body-text">If you do not join within 5 minutes of the session start time, your TA will send you an email reminder. If there is still no response, your Class Coordinator will be notified. Please respond as quickly as you can — your TA's time is limited and they are waiting for you.</div>
+      </div>
+      <div class="section">
+        <div class="sec-head">No-show escalation — three strikes</div>
+        <div class="strike-row">
+          <span class="strike-num" style="color:#1D9E75">1st no-show</span>
+          <span style="color:#5F5E5A;font-size:13px;line-height:1.5">Your Class Coordinator is notified and logs it in your record. Nothing else happens this time.</span>
+        </div>
+        <div class="strike-row">
+          <span class="strike-num" style="color:#BA7517">2nd no-show</span>
+          <span style="color:#5F5E5A;font-size:13px;line-height:1.5">Your Class Coordinator sends a warning note to your parents directly.</span>
+        </div>
+        <div class="strike-row">
+          <span class="strike-num" style="color:#993C1D">3rd no-show</span>
+          <span style="color:#5F5E5A;font-size:13px;line-height:1.5">Your TA may cancel your future bookings. Your Class Coordinator will be in touch about next steps.</span>
+        </div>
+      </div>
+      <div class="section">
+        <div class="hl" style="background:#FAECE7;border:1px solid #F5C4B3;color:#993C1D">If you miss a session and did not cancel — your TA's time is gone. They waited for you. Please be respectful of their schedule by cancelling early if something comes up. A 24-hour cancellation costs you nothing.</div>
+      </div>`
+  },
+];
+
+let cur = 0;
+
+function render() {
+  const ch = chapters[cur];
+  let pills = '';
+  chapters.forEach((c, i) => {
+    const a = i === cur;
+    pills += `<button class="pill${a?' active':''}" onclick="jump(${i})"
+      style="${a?`border-color:${c.oc};background:${c.obg};color:${c.oc}`:''}">
+      <span>${c.icon}</span>${c.label}</button>`;
+  });
+  document.getElementById('pills').innerHTML = pills;
+
+  document.getElementById('ch-card').innerHTML = `
+    <div class="card-head" style="background:${ch.obg};border-bottom:1px solid ${ch.ob}">
+      <div class="ch-icon">${ch.icon}</div>
+      <div class="ch-title" style="color:${ch.oc}">${ch.title}</div>
+      <div class="ch-sub" style="color:${ch.oc}">${ch.sub}</div>
+    </div>
+    <div class="card-body">${ch.html}</div>`;
+
+  let dots = '';
+  chapters.forEach((_, i) => {
+    dots += `<button class="dot" onclick="jump(${i})"
+      style="width:${i===cur?20:7}px;opacity:${i===cur?1:.4};background:${i===cur?'#1B2B4B':'rgba(0,0,0,.15)'}"></button>`;
+  });
+  document.getElementById('dots').innerHTML = dots;
+
+  document.getElementById('btn-prev').disabled = cur === 0;
+  const next = document.getElementById('btn-next');
+  next.textContent = cur === chapters.length - 1 ? 'Done ✓' : 'Next →';
+  next.disabled = cur === chapters.length - 1;
+}
+
+function go(dir) { jump(cur + dir); }
+function jump(i) {
+  if(i < 0 || i >= chapters.length) return;
+  cur = i;
+  render();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+render();
+</script>
+</body>
+</html>
